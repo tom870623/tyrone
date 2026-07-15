@@ -1,25 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TylerThePilot · AI 副手</title>
+<meta name="description" content="TylerThePilot — 長榮航空副機長 Tyler 的 AI 分身與 LifeOS 作品集">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+</head>
+<body style="margin:0">
 <style>
   :root {
-    --ground: #090D11; --panel: #0F161D; --panel-2: #141D26; --side: #0C1218;
-    --line: #22303C; --line-soft: #1A2530;
-    --ink: #D6E2EA; --ink-dim: #7E93A0;
-    --grn: #24E38A; --mag: #F25CC1; --cyn: #4CD4FF; --amb: #FFB020; --red: #FF5C5C;
+    --ground: #0A0A0D; --panel: #141118; --panel-2: #1B1622; --side: #0D0C11;
+    --line: #2E2438; --line-soft: #221B2B;
+    --ink: #ECE6F0; --ink-dim: #9488A2;
+    --grn: #F5C542; --mag: #C15CFF; --cyn: #3FE0CE; --amb: #FF8A3D; --red: #FF5C5C;
     --glow: 0 0 22px;
     --mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", Roboto, sans-serif;
+    --display: "Arial Black", "Helvetica Neue", Impact, "PingFang TC", sans-serif;
     --sidew: 244px;
   }
   @media (prefers-color-scheme: light) {
-    :root { --ground:#E5EAEE; --panel:#F3F6F8; --panel-2:#FBFCFD; --side:#EBEFF2;
-      --line:#C0CED7; --line-soft:#D3DDE3; --ink:#16232C; --ink-dim:#596B76;
-      --grn:#0C9155; --mag:#BE2494; --cyn:#0A7CAE; --amb:#A96A00; --red:#CB3535; }
+    :root { --ground:#EDE9F0; --panel:#F7F4FA; --panel-2:#FCFAFE; --side:#E7E2EC;
+      --line:#CDC2D8; --line-soft:#DBD2E3; --ink:#1E1726; --ink-dim:#655874;
+      --grn:#9A7000; --mag:#8B2FD6; --cyn:#0A8E86; --amb:#C25A12; --red:#CB3535; }
   }
-  :root[data-theme="dark"] { --ground:#090D11; --panel:#0F161D; --panel-2:#141D26; --side:#0C1218;
-    --line:#22303C; --line-soft:#1A2530; --ink:#D6E2EA; --ink-dim:#7E93A0;
-    --grn:#24E38A; --mag:#F25CC1; --cyn:#4CD4FF; --amb:#FFB020; --red:#FF5C5C; }
-  :root[data-theme="light"] { --ground:#E5EAEE; --panel:#F3F6F8; --panel-2:#FBFCFD; --side:#EBEFF2;
-    --line:#C0CED7; --line-soft:#D3DDE3; --ink:#16232C; --ink-dim:#596B76;
-    --grn:#0C9155; --mag:#BE2494; --cyn:#0A7CAE; --amb:#A96A00; --red:#CB3535; }
+  :root[data-theme="dark"] { --ground:#0A0A0D; --panel:#141118; --panel-2:#1B1622; --side:#0D0C11;
+    --line:#2E2438; --line-soft:#221B2B; --ink:#ECE6F0; --ink-dim:#9488A2;
+    --grn:#F5C542; --mag:#C15CFF; --cyn:#3FE0CE; --amb:#FF8A3D; --red:#FF5C5C; }
+  :root[data-theme="light"] { --ground:#EDE9F0; --panel:#F7F4FA; --panel-2:#FCFAFE; --side:#E7E2EC;
+    --line:#CDC2D8; --line-soft:#DBD2E3; --ink:#1E1726; --ink-dim:#655874;
+    --grn:#9A7000; --mag:#8B2FD6; --cyn:#0A8E86; --amb:#C25A12; --red:#CB3535; }
 
   * { box-sizing: border-box; }
   .app { display: grid; grid-template-columns: var(--sidew) 1fr; min-height: 100vh;
@@ -38,7 +49,7 @@
   .ava-band, .ava-mic { fill: none; stroke: var(--side); stroke-width: 2.4; stroke-linecap: round; }
   .ava-cup { fill: var(--side); }
   .brand-txt { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
-  .brand-txt b { font-family: var(--mono); font-size: 17px; letter-spacing: .06em; color: var(--ink); }
+  .brand-txt b { font-family: var(--mono); font-size: 14px; letter-spacing: .01em; color: var(--ink); }
   .brand-txt span { font-size: 11px; color: var(--ink-dim); white-space: nowrap; }
 
   .uptime { display: flex; align-items: center; gap: 8px; padding: 8px 10px; margin: 0 4px 8px;
@@ -93,8 +104,10 @@
   .mbody { padding: clamp(18px, 3vw, 34px); max-width: 1040px; width: 100%; }
   section { scroll-margin-top: 78px; margin-bottom: 44px; }
   .sec-head { display: flex; align-items: baseline; gap: 13px; margin-bottom: 18px; border-bottom: 1px solid var(--line-soft); padding-bottom: 10px; }
-  .sec-head h2 { font-family: var(--mono); font-size: 14px; letter-spacing: .12em; text-transform: uppercase; margin: 0; color: var(--ink); font-weight: 600; }
-  .sec-head .idx { font-family: var(--mono); font-size: 12px; color: var(--grn); }
+  .sec-head h2 { font-family: var(--mono); font-size: 14px; letter-spacing: .12em; text-transform: uppercase; margin: 0; color: var(--ink); font-weight: 700; }
+  .sec-head .idx { font-family: var(--display); font-style: italic; font-size: 15px; font-weight: 900; color: var(--grn);
+    background: color-mix(in srgb, var(--grn) 14%, transparent); border: 1px solid color-mix(in srgb, var(--grn) 35%, var(--line));
+    border-radius: 6px; padding: 2px 8px; letter-spacing: -.02em; }
   .sec-head .r { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--ink-dim); letter-spacing: .08em; }
 
   /* ---------- HERO / EFIS ---------- */
@@ -111,9 +124,12 @@
   .status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; letter-spacing: .12em;
     color: var(--grn); border: 1px solid color-mix(in srgb, var(--grn) 45%, var(--line)); border-radius: 999px; padding: 5px 12px;
     background: color-mix(in srgb, var(--grn) 8%, transparent); }
-  .callsign { position: relative; z-index: 1; font-family: var(--mono); font-weight: 700; font-size: clamp(42px, 9vw, 92px);
-    line-height: .92; letter-spacing: .04em; margin: 16px 0 8px; color: var(--ink); text-shadow: 0 0 30px color-mix(in srgb, var(--grn) 20%, transparent); }
-  .callsign b { color: var(--grn); }
+  .callsign { position: relative; z-index: 1; font-family: var(--display); font-weight: 900; font-style: italic; font-size: clamp(52px, 12vw, 118px);
+    line-height: .82; letter-spacing: -.01em; margin: 14px 0 12px; color: var(--ink); text-transform: uppercase;
+    text-shadow: 3px 3px 0 color-mix(in srgb, var(--mag) 55%, transparent), 0 0 40px color-mix(in srgb, var(--grn) 22%, transparent); }
+  .callsign b { color: var(--grn); -webkit-text-stroke: 1px color-mix(in srgb, var(--grn) 60%, var(--ink)); }
+  .callsign .the { font-size: .52em; color: var(--mag); -webkit-text-stroke: 0; letter-spacing: .04em;
+    text-shadow: 2px 2px 0 color-mix(in srgb, var(--grn) 45%, transparent); }
   .tagline { position: relative; z-index: 1; font-size: clamp(14px, 2.2vw, 18px); color: var(--ink-dim); max-width: 48ch; }
   .chips { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
   .chip { display: flex; flex-direction: column; gap: 3px; border: 1px solid var(--line); border-radius: 10px;
@@ -122,6 +138,7 @@
   .chip b { font-family: var(--mono); font-size: 13.5px; color: var(--ink); font-weight: 600; }
 
   .gauges { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 14px; }
+  @media (max-width: 680px) { .gauges { grid-template-columns: repeat(3, 1fr); } }
   .gauge { border: 1px solid var(--line); border-radius: 12px; background: linear-gradient(180deg, var(--panel-2), var(--panel)); padding: 15px 14px; position: relative; }
   .gauge::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 11px; height: 2px; border-radius: 2px;
     background: linear-gradient(90deg, var(--accent, var(--grn)), transparent); opacity: .7; }
@@ -189,6 +206,33 @@
   .bar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--pc, var(--grn)), color-mix(in srgb, var(--pc, var(--grn)) 55%, transparent)); }
   .pcard .pct { font-family: var(--mono); font-size: 11px; color: var(--ink-dim); margin-top: 7px; text-align: right; font-variant-numeric: tabular-nums; }
 
+  /* ---------- PORTFOLIO (作品集) ---------- */
+  .works { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  @media (max-width: 680px) { .works { grid-template-columns: 1fr; } }
+  .wcard { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); overflow: hidden;
+    display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
+  .wcard:hover { border-color: color-mix(in srgb, var(--grn) 55%, var(--line)); transform: translateY(-3px); }
+  .wcard.wide { grid-column: 1 / -1; }
+  .wimg { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--line-soft); background: var(--ground); }
+  .wimg img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .wimg .demo-note { position: absolute; right: 10px; top: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+    color: var(--amb); background: color-mix(in srgb, var(--ground) 80%, transparent); border: 1px solid color-mix(in srgb, var(--amb) 40%, var(--line));
+    border-radius: 6px; padding: 3px 8px; backdrop-filter: blur(4px); }
+  .wbody { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+  .wtop { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .wbody h3 { font-family: var(--mono); font-size: 15px; margin: 0; color: var(--ink); font-weight: 600; }
+  .wbody p { margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--ink-dim); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+  .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--cyn);
+    border: 1px solid color-mix(in srgb, var(--cyn) 35%, var(--line)); border-radius: 6px; padding: 3px 8px; white-space: nowrap; }
+  /* 管家系統示意圖（純 CSS/SVG，無截圖） */
+  .guardian { display: flex; flex-direction: column; gap: 10px; padding: 18px; background: var(--ground); border-bottom: 1px solid var(--line-soft); }
+  .g-row { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center;
+    border: 1px solid var(--line-soft); border-radius: 9px; padding: 9px 13px; background: var(--panel); }
+  .g-row .gt { font-family: var(--mono); font-size: 12.5px; color: var(--cyn); font-variant-numeric: tabular-nums; }
+  .g-row .gn { font-size: 13px; color: var(--ink); }
+  .g-row .gp { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--grn); }
+
   /* ---------- HEALTH ---------- */
   .sys { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   @media (max-width: 640px) { .sys { grid-template-columns: 1fr; } }
@@ -228,7 +272,7 @@
   <!-- ============ SIDEBAR ============ -->
   <aside class="side">
     <div class="brand">
-      <svg class="ava" viewBox="0 0 64 64" aria-label="Tyrone avatar">
+      <svg class="ava" viewBox="0 0 64 64" aria-label="TylerThePilot avatar">
         <rect class="ava-bg" x="0" y="0" width="64" height="64" rx="14"/>
         <path class="ava-body" d="M15 58c0-10 8-15 17-15s17 5 17 15z"/>
         <circle class="ava-head" cx="32" cy="27" r="11"/>
@@ -237,7 +281,7 @@
         <rect class="ava-cup" x="41.5" y="26" width="6" height="10" rx="2.4"/>
         <path class="ava-mic" d="M19.5 35c-2 5 0 9 5 11"/>
       </svg>
-      <div class="brand-txt"><b>TYRONE</b><span>Tyler 的 AI 副手</span></div>
+      <div class="brand-txt"><b>TylerThePilot</b><span>Tyler 的 AI 副手</span></div>
     </div>
 
     <div class="uptime"><span class="dot"></span><span class="utxt">Uptime</span> <b id="uptime">—</b></div>
@@ -257,7 +301,7 @@
         <span class="nt"><b>Knowledge</b><span>技能庫</span></span></a>
       <a class="nav-i" href="#projects" data-sec="projects">
         <svg viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>
-        <span class="nt"><b>Projects</b><span>專案進度</span></span></a>
+        <span class="nt"><b>Portfolio</b><span>作品集</span></span></a>
       <a class="nav-i" href="#health" data-sec="health">
         <svg viewBox="0 0 24 24"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg>
         <span class="nt"><b>Health</b><span>基礎設施</span></span></a>
@@ -272,7 +316,7 @@
   <!-- ============ MAIN ============ -->
   <main class="main">
     <header class="mhead">
-      <div class="mtitle"><b>◎ TYRONE</b><span class="sub">Tyler · <em id="synced">synced just now</em></span></div>
+      <div class="mtitle"><b>◎ TYLERTHEPILOT</b><span class="sub">Tyler · <em id="synced">synced just now</em></span></div>
       <button class="refresh" id="refreshBtn"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-.7 4.5"/><path d="M20 5v6h-6"/></svg>Refresh</button>
     </header>
 
@@ -290,44 +334,46 @@
           </svg>
           <div class="sweep"></div>
           <div class="efis-top">
-            <div class="label">Flight Deck · LifeOS</div>
-            <div class="status"><span class="dot"></span>SYSTEM ONLINE</div>
+            <div class="label">TylerThePilot · LifeOS</div>
+            <div class="status"><span class="dot"></span>ON AIR</div>
           </div>
-          <h1 class="callsign">TYR<b>O</b>NE</h1>
-          <p class="tagline">Tyler 的 AI 副手。你在 787 的右座，<span class="mag">我在你人生的右座</span> —— 常駐、校準、隨時待命。</p>
+          <h1 class="callsign">TYLER<br><span class="the">THE</span><br><b>PILOT</b></h1>
+          <p class="tagline">Tyler 的 AI 副手。<span class="mag">行程、財務、待辦、飛行筆記</span>，該扛的自己扛，不用等人開口。</p>
           <div class="chips">
-            <div class="chip"><span>Engine</span><b>Claude Opus 4.8</b></div>
+            <div class="chip"><span>Engine</span><b>Claude Fable 5</b></div>
             <div class="chip"><span>Memory</span><b>3 層架構</b></div>
-            <div class="chip"><span>Standby</span><b>3 Bots · 24/7</b></div>
-            <div class="chip"><span>Datalink</span><b>5 MCP 服務</b></div>
+            <div class="chip"><span>Guardian</span><b>管家 24/7 主動推播</b></div>
+            <div class="chip"><span>Datalink</span><b id="c-mcp">4 MCP 服務</b></div>
           </div>
         </div>
 
+        <!-- 數字由 LifeOS 管家系統即時同步（/api/public-stats），抓不到時顯示以下保底值 -->
         <div class="gauges">
-          <div class="gauge" style="--accent:var(--grn)"><div class="num">6</div><div class="cap">Skills</div></div>
-          <div class="gauge" style="--accent:var(--cyn)"><div class="num">20</div><div class="cap">Memory</div></div>
-          <div class="gauge" style="--accent:var(--mag)"><div class="num">8</div><div class="cap">Domains</div></div>
-          <div class="gauge" style="--accent:var(--amb)"><div class="num">3</div><div class="cap">Bots</div></div>
-          <div class="gauge" style="--accent:var(--cyn)"><div class="num">5</div><div class="cap">MCP Link</div></div>
-          <div class="gauge" style="--accent:var(--grn)"><div class="num">13<span class="unit">d</span></div><div class="cap">Age</div></div>
+          <div class="gauge" style="--accent:var(--grn)"><div class="num" id="g-skills">8</div><div class="cap">Skills</div></div>
+          <div class="gauge" style="--accent:var(--cyn)"><div class="num" id="g-memories">27</div><div class="cap">Memory</div></div>
+          <div class="gauge" style="--accent:var(--mag)"><div class="num" id="g-domains">9</div><div class="cap">Domains</div></div>
+          <div class="gauge" style="--accent:var(--amb)"><div class="num" id="g-apps">3</div><div class="cap">Apps Live</div></div>
+          <div class="gauge" style="--accent:var(--cyn)"><div class="num" id="g-mcp">4</div><div class="cap">MCP Link</div></div>
+          <div class="gauge" style="--accent:var(--grn)"><div class="num" id="g-age">15<span class="unit">d</span></div><div class="cap">Age</div></div>
         </div>
 
         <div class="briefing">
-          <p class="lead"><span class="k">13 天前，我還只是一個空資料夾。</span>那個晚上你敲下第一行指令，沒有藍圖，只知道想要一個能替你顧著生活的系統。我什麼都還不會。</p>
-          <p>後來我慢慢學會了你。你寫中文遇到英文和數字要空一格；航空術語一律保留 <em>FCOM</em>、<em>QRH</em> 的英文原文；重要的事先給計劃再動手；時間永遠用台北。這些不是設定檔裡的規則，是我一次次被你修正之後長出來的默契。</p>
-          <p>但比技能更重要的是：<span class="k">我知道什麼時候該主動做，什麼時候該先問你一聲。</span>你在右座飛真的飛機，我在右座飛你的人生 —— 同一個原則：不搶操縱桿，但該提醒的絕不漏掉。</p>
+          <p class="lead">我是 Tyler 的 AI 副手，幫他把生活裡的雜事管起來 —— <span class="k">行程、財務、待辦、飛行筆記</span>，能自動的就自動。</p>
+          <p>規則不是預先設好的，是一次次被修正累積下來的：中文夾英文空一格、航空術語留 <em>FCOM</em> / <em>QRH</em> 原文、動手前先給計劃、時間用台北。用久了就成了默契。</p>
+          <p>做事原則就一句：<span class="k">能自己處理的就處理，該問一聲的先問。</span>不搶方向盤，也不裝忙。</p>
         </div>
       </section>
 
       <!-- ACTIVITY -->
       <section id="activity">
-        <div class="sec-head"><span class="idx">01</span><h2>Activity · 排程任務</h2><span class="r">5 running</span></div>
+        <div class="sec-head"><span class="idx">01</span><h2>Activity · 排程任務</h2><span class="r">6 running</span></div>
         <div class="board">
-          <div class="brow"><div class="bname">Morning Bot<small>每日早報：彙整昨日回顧與今日行程</small></div><div class="bcad">每日 07:00</div><span class="pill on">ACTIVE</span></div>
-          <div class="brow"><div class="bname">Discord Calendar Bot<small>CalDAV 同步 EVA 班表，即時推播</small></div><div class="bcad">即時 · 24/7</div><span class="pill on">ACTIVE</span></div>
-          <div class="brow"><div class="bname">LINE Bot<small>訊息通道，隨時待命回應</small></div><div class="bcad">常駐</div><span class="pill on">ACTIVE</span></div>
+          <div class="brow"><div class="bname">早晨日報 · /morning<small>行程、航班、天氣、市場、待辦，加「掛太久的事」點名</small></div><div class="bcad">每日 07:00</div><span class="pill on">ACTIVE</span></div>
+          <div class="brow"><div class="bname">待辦到期分級提醒<small>逾期 / 今天 / 明天 / 三天內，分級推播；沒事就安靜</small></div><div class="bcad">每日 20:00</div><span class="pill on">ACTIVE</span></div>
+          <div class="brow"><div class="bname">晚間自動日誌 · /nightly<small>彙整當天工作痕跡自動寫日誌，再問一句要不要補充</small></div><div class="bcad">每日 22:00</div><span class="pill on">ACTIVE</span></div>
+          <div class="brow"><div class="bname">LifeOS 快照推送<small>把待辦、行程、下一趟航班同步上雲端儀表板</small></div><div class="bcad">每小時</div><span class="pill auto">AUTO</span></div>
+          <div class="brow"><div class="bname">股價自動更新<small>Finance OS 的台股 / 美股 / 加密報價，雲端排程自動抓</small></div><div class="bcad">每日 06:00 / 14:30</div><span class="pill auto">AUTO</span></div>
           <div class="brow"><div class="bname">Memory Sync<small>對話中的新偏好與踩坑自動回寫記憶</small></div><div class="bcad">每次對話</div><span class="pill auto">AUTO</span></div>
-          <div class="brow"><div class="bname">學習日記 · /journal<small>睡前 5 問回顧，生成日記並追蹤待辦</small></div><div class="bcad">每日睡前</div><span class="pill demand">ON DEMAND</span></div>
         </div>
       </section>
 
@@ -335,21 +381,25 @@
       <section id="timeline">
         <div class="sec-head"><span class="idx">02</span><h2>Timeline · 進度紀錄</h2><span class="r">系統演化航跡</span></div>
         <div class="prog">
-          <div class="leg"><div class="date">06 / 29</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>系統啟動</h4><p>LifeOS 母資料夾建立 —— Tyrone 的第一行程式碼。</p></div></div>
+          <div class="leg"><div class="date">06 / 29</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>系統啟動</h4><p>LifeOS 母資料夾建立 —— TylerThePilot 的第一行程式碼。</p></div></div>
           <div class="leg"><div class="date">07 / 07</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>版本控管上線</h4><p>git 進場，每一次改動都留下航跡。</p></div></div>
           <div class="leg"><div class="date">07 / 08</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>資料層整合</h4><p>記憶與 skills 收進 000_Agent，系統路徑用 symlink 指過去。</p></div></div>
           <div class="leg"><div class="date">07 / 09</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>服務層歸檔</h4><p>三個 Bot 與憑證搬進 900_Infra，root 只留可攜編號層。</p></div></div>
           <div class="leg"><div class="date">07 / 10</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>生活域擴充</h4><p>新增 600_Life，區分「知識」與「紀錄」兩種資料。</p></div></div>
           <div class="leg"><div class="date">07 / 11</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>手冊知識庫</h4><p>FCOM / QRH / FOM 做成可追版本的卡片，只補差異。</p></div></div>
-          <div class="leg now"><div class="date">07 / 12</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>500_Flight 編號重整 · 現在</h4><p>飛行域改成 510–550 架構，四合一整理引擎上線。</p></div></div>
+          <div class="leg"><div class="date">07 / 12</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>500_Aviation 編號重整</h4><p>飛行域改成 510–550 架構，四合一整理引擎上線。</p></div></div>
+          <div class="leg"><div class="date">07 / 13</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>Finance OS 上線</h4><p>個人財務系統部署上雲：總覽、記帳、股票、債券、加密五頁全通。</p></div></div>
+          <div class="leg now"><div class="date">07 / 14</div><div class="rail"><div class="wp"></div></div><div class="txt"><h4>管家全套啟用 · 現在</h4><p>三個每日推播＋LifeOS 儀表板上線 —— 系統開始主動找 Tyler，而不是等他來叫。</p></div></div>
         </div>
       </section>
 
       <!-- KNOWLEDGE -->
       <section id="knowledge">
-        <div class="sec-head"><span class="idx">03</span><h2>Knowledge · 技能庫</h2><span class="r">6 armed</span></div>
+        <div class="sec-head"><span class="idx">03</span><h2>Knowledge · 技能庫</h2><span class="r">8 armed</span></div>
         <div class="mcdu">
           <div class="lsk"><span class="key">/morning</span><div class="b"><h3>早晨日報</h3><p>彙整昨日回顧與今日行程 —— 讀 Google Calendar、Gmail、Notion，加 iPhone 行事曆與提醒事項。</p></div><span class="arm">ARMED</span></div>
+          <div class="lsk"><span class="key">/nightly</span><div class="b"><h3>晚間自動日誌</h3><p>每晚自動彙整當天的工作痕跡寫成日誌草稿 —— 一個字都不回也有紀錄。</p></div><span class="arm">ARMED</span></div>
+          <div class="lsk"><span class="key">/todo</span><div class="b"><h3>待辦看板</h3><p>五個 bucket 的任務看板彙整回報，新增、完成、跨清單搬移一句話搞定。</p></div><span class="arm">ARMED</span></div>
           <div class="lsk"><span class="key">/journal</span><div class="b"><h3>學習日記</h3><p>5 個問題引導回顧當天的學習，自動生成 Markdown 日記並追蹤未完成待辦。</p></div><span class="arm">ARMED</span></div>
           <div class="lsk"><span class="key">/inbox</span><div class="b"><h3>隨手筆記歸類</h3><p>把收件匣和 Apple Notes 的雜亂筆記，判斷主題後自動歸到 vault 對應資料夾。</p></div><span class="arm">ARMED</span></div>
           <div class="lsk"><span class="key">/trip</span><div class="b"><h3>旅行計劃生成器</h3><p>一句話（城市＋日期）生出可多人共編的 Notion 旅行計劃，含航班、住宿、逐日行程。</p></div><span class="arm">ARMED</span></div>
@@ -358,14 +408,42 @@
         </div>
       </section>
 
-      <!-- PROJECTS -->
+      <!-- PORTFOLIO -->
       <section id="projects">
-        <div class="sec-head"><span class="idx">04</span><h2>Projects · 專案進度</h2><span class="r">4 tracked</span></div>
+        <div class="sec-head"><span class="idx">04</span><h2>Portfolio · 作品集</h2><span class="r">built with Tyler</span></div>
+        <div class="works">
+          <div class="wcard">
+            <div class="wimg"><img src="assets/finance-demo.png" alt="Finance OS 資產總覽（Demo 數據）" loading="lazy"><span class="demo-note">DEMO 數據</span></div>
+            <div class="wbody">
+              <div class="wtop"><h3>Finance OS</h3><span class="st live">已上線</span></div>
+              <p>全家資產一頁看清：股票、債券、加密貨幣、記帳與訂閱管理。台股美股幣價每天自動更新，資料放在自己的雲端資料庫，密碼登入。紅賺綠賠，台股魂。</p>
+              <div class="tags"><span class="tag">Cloudflare Workers</span><span class="tag">D1</span><span class="tag">Next.js</span><span class="tag">Cron 自動報價</span></div>
+            </div>
+          </div>
+          <div class="wcard">
+            <div class="wimg"><img src="assets/lifeos-demo.png" alt="LifeOS 儀表板（Demo 數據）" loading="lazy"><span class="demo-note">DEMO 數據</span></div>
+            <div class="wbody">
+              <div class="wtop"><h3>LifeOS 儀表板</h3><span class="st live">已上線</span></div>
+              <p>人生總覽一頁式：今日行程與下一趟航班、待辦清單、放太久被點名的事、資產摘要。資料由管家機器人每小時從本機自動同步上雲，人在國外照樣看。</p>
+              <div class="tags"><span class="tag">Cloudflare Workers</span><span class="tag">單檔無框架</span><span class="tag">CalDAV</span></div>
+            </div>
+          </div>
+          <div class="wcard wide">
+            <div class="guardian">
+              <div class="g-row"><span class="gt">07:00</span><span class="gn">早晨日報 —— 行程、航班、市場，加「掛太久的事」點名</span><span class="gp">DAILY</span></div>
+              <div class="g-row"><span class="gt">20:00</span><span class="gn">待辦到期分級提醒 —— 逾期 / 明天 / 三天內，沒事就安靜</span><span class="gp">DAILY</span></div>
+              <div class="g-row"><span class="gt">22:00</span><span class="gn">晚間自動日誌 —— 彙整一天的工作痕跡，自動寫進記憶</span><span class="gp">DAILY</span></div>
+            </div>
+            <div class="wbody">
+              <div class="wtop"><h3>管家系統 Guardian</h3><span class="st live">已上線</span></div>
+              <p>讓系統主動找人，而不是人記得去叫系統。Discord 機器人常駐 Mac，三個每日推播＋每小時儀表板快照＋起飛前航班提醒（含即時 METAR / TAF），全部無人值守。</p>
+              <div class="tags"><span class="tag">Discord Bot</span><span class="tag">Python</span><span class="tag">launchd</span><span class="tag">Claude Code headless</span></div>
+            </div>
+          </div>
+        </div>
         <div class="projects">
-          <div class="pcard"><div class="ptop"><h3>500_Flight 編號重整</h3><span class="st wip">進行中</span></div><p>飛行域改成 510–550 編號架構，骨架已建，內容漸進遷移中。</p><div class="bar"><i style="width:60%;--pc:var(--amb)"></i></div><div class="pct">60%</div></div>
-          <div class="pcard"><div class="ptop"><h3>手冊知識庫</h3><span class="st wip">進行中</span></div><p>FCOM / QRH / FOM 做成可追版本卡片，待做 /manual-update skill。</p><div class="bar"><i style="width:45%;--pc:var(--amb)"></i></div><div class="pct">45%</div></div>
-          <div class="pcard"><div class="ptop"><h3>400_Finance 資產負債表</h3><span class="st plan">規劃中</span></div><p>個人財務管理與理財規劃參考，資產負債表建置。</p><div class="bar"><i style="width:20%;--pc:var(--cyn)"></i></div><div class="pct">20%</div></div>
-          <div class="pcard"><div class="ptop"><h3>/trip 旅行計劃生成器</h3><span class="st live">已上線</span></div><p>一句話生出可共編的 Notion 旅行計劃，已做成 Skill。</p><div class="bar"><i style="width:100%;--pc:var(--grn)"></i></div><div class="pct">100%</div></div>
+          <div class="pcard"><div class="ptop"><h3>手冊知識庫</h3><span class="st wip">進行中</span></div><p>FCOM / QRH / FOM 做成可追版本的知識卡片，改版只補差異。</p><div class="bar"><i style="width:45%;--pc:var(--amb)"></i></div><div class="pct">45%</div></div>
+          <div class="pcard"><div class="ptop"><h3>500_Aviation 編號重整</h3><span class="st wip">進行中</span></div><p>飛行域改成 510–550 編號架構，骨架已建，內容漸進遷移中。</p><div class="bar"><i style="width:60%;--pc:var(--amb)"></i></div><div class="pct">60%</div></div>
         </div>
       </section>
 
@@ -383,17 +461,17 @@
           </div>
           <div class="sys-panel">
             <div class="ph">900_Infra · 常駐服務</div>
-            <div class="sys-row"><span class="n">Discord Calendar Bot</span><span class="s"><span class="d"></span>24/7</span></div>
-            <div class="sys-row"><span class="n">Morning Bot</span><span class="s"><span class="d"></span>24/7</span></div>
-            <div class="sys-row"><span class="n">LINE Bot</span><span class="s"><span class="d"></span>24/7</span></div>
+            <div class="sys-row"><span class="n">Discord Guardian Bot</span><span class="s"><span class="d"></span>24/7</span></div>
+            <div class="sys-row"><span class="n">Finance OS · Cloudflare</span><span class="s"><span class="d"></span>LIVE</span></div>
+            <div class="sys-row"><span class="n">LifeOS Dashboard · Cloudflare</span><span class="s"><span class="d"></span>LIVE</span></div>
             <div class="sys-row"><span class="n">Memory · 3 層記憶架構</span><span class="s"><span class="d"></span>SYNC</span></div>
           </div>
         </div>
 
         <div class="foot">
-          <div class="quote">「校準不是一次到位的事，<br><span class="mag">是每一段航程持續修正的航跡。</span>」</div>
-          <div class="deploy"><span class="badge">DEPLOY READY</span><span>這頁隨時可部署成獨立網站（Zeabur / Cloudflare），內容不用重做。</span></div>
-          <div class="metaline">TYRONE · LifeOS Co-Pilot · Tyler（顏彤恩）· EVA Air 副機長 · 資料截至 2026-07-12</div>
+          <div class="quote">一直在調，一直在飛。<br><span class="mag">數字自己會動，不用我吹。</span></div>
+          <div class="deploy"><span class="badge">LIVE DATA</span><span>本頁統計數字由 LifeOS 管家系統即時同步，不會過時。</span></div>
+          <div class="metaline">TYLERTHEPILOT · LifeOS Co-Pilot · Tyler（顏彤恩）· EVA Air 副機長 · <span id="statline">統計即時同步</span></div>
         </div>
       </section>
     </div>
@@ -479,6 +557,34 @@
     syncedAt = Date.now(); tickSynced();
     rb.classList.add('spin');
     setTimeout(function () { rb.classList.remove('spin'); }, 650);
+    loadStats();
   });
+
+  // ---- 活數字：從 LifeOS 管家系統抓即時統計（抓不到就保留 HTML 裡的保底值） ----
+  var STATS_URL = 'https://lifeos.tylerthepilot.workers.dev/api/public-stats';
+  function setNum(id, v) {
+    if (typeof v !== 'number') return;
+    var el = document.getElementById(id);
+    if (el) el.childNodes[0].nodeValue = String(v);
+  }
+  function loadStats() {
+    fetch(STATS_URL).then(function (r) { return r.json(); }).then(function (s) {
+      setNum('g-skills', s.skills);
+      setNum('g-memories', s.memories);
+      setNum('g-domains', s.domains);
+      setNum('g-apps', s.apps_live);
+      setNum('g-mcp', s.mcp);
+      setNum('g-age', s.days_alive);
+      if (typeof s.mcp === 'number') document.getElementById('c-mcp').textContent = s.mcp + ' MCP 服務';
+      if (s.updated_at) {
+        var t = new Date(s.updated_at);
+        document.getElementById('statline').textContent = '統計同步於 ' +
+          t.toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false });
+      }
+    }).catch(function () { /* 離線或端點掛了 → 保底值照常顯示 */ });
+  }
+  loadStats();
 })();
 </script>
+</body>
+</html>
